@@ -1,35 +1,24 @@
-from rest_framework.validators import ValidationError
-from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from rest_framework.generics import get_object_or_404
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework import filters, mixins, status, viewsets
-from rest_framework.pagination import (
-    LimitOffsetPagination,
-    PageNumberPagination
-)
-from django_filters.rest_framework import DjangoFilterBackend
+from api.filters import FilterTitle
+from api.permissions import (IsAdmin, IsAdminOrReadOnly,
+                             IsAuthorHighUserOrReadOnly)
+from api.serializers import (CategorySerializer, CommentSerializer,
+                             GenreSerializer, ReviewSerializer,
+                             SendUserTokenSerializer, SingUpSerializer,
+                             TitlePostSerializer, TitleSerializer,
+                             UserProfileSerializer, UserSerializer)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
-from django.db.models import Avg
-from django.db.models import Q
-from api.filters import FilterTitle
-from api.serializers import (
-    CategorySerializer,
-    GenreSerializer,
-    TitlePostSerializer,
-    TitleSerializer,
-    CommentSerializer,
-    ReviewSerializer,
-    UserSerializer,
-    UserProfileSerializer,
-    SingUpSerializer,
-    SendUserTokenSerializer
-)
-from api.permissions import (
-    IsAuthorHighUserOrReadOnly, IsAdmin, IsAdminOrReadOnly
-)
+from django.db.models import Avg, Q
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, mixins, status, viewsets
+from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
+from rest_framework.pagination import (LimitOffsetPagination,
+                                       PageNumberPagination)
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.validators import ValidationError
+from rest_framework_simplejwt.tokens import AccessToken
 from reviews.models import Category, Comment, Genre, Review, Title, User
 
 
@@ -124,7 +113,7 @@ class TitleViewSet(viewsets.ModelViewSet):
         if self.action in ('list', 'retrieve'):
             queryset = (Title.objects.prefetch_related('reviews').all().
                         annotate(rating=Avg('reviews__score')))
-            return queryset
+            return queryset()
         return Title.objects.all()
 
 
