@@ -1,5 +1,7 @@
 # yamdb_final
-
+![example workflow](https://github.com/Ekaterina-Ch-va/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![example branch parameter](https://github.com/Ekaterina-Ch-va/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=feature-1)
+![example event parameter](https://github.com/Ekaterina-Ch-va/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
 ## Описание:
 > Концепция проекта YaMDb:
 >> Проект YaMDb собирает отзывы пользователей на произведения. Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
