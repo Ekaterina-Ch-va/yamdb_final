@@ -1,4 +1,4 @@
-name: yamdb_final workflow_v.1.22
+name: yamdb_final workflow_v.1.23
 
 on: [push]
 
@@ -68,8 +68,8 @@ jobs:
           script: |
             sudo docker compose stop
             sudo docker compose rm web
-            sudo docker image rm anf16f/yamdb:latest -f
-            sudo docker volume rm anf16f_static_value -f
+            sudo docker image rm katyach/api_yamdb-web-1:v1 -f
+            sudo docker volume rm katyach_static_value -f
             #docker compose pull
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
