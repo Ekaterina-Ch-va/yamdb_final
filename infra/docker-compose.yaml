@@ -9,7 +9,6 @@ services:
       - ./.env
 
   web:
-    # build: ../api_yamdb/
     image: katyach/api_yamdb-web-1:v1
     restart: always
     volumes:
