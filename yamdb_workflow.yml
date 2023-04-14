@@ -1,8 +1,9 @@
-name: yamdb_final workflow_v.1.30
+name: yamdb_final workflow_v.1.31
 
-on: [push]
-  branches:
-    - master
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   tests:
